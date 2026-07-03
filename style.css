@@ -1,0 +1,99 @@
+/* Color Variables */
+:root {
+    --primary: #4ecca3;
+    --secondary: #2c3e50;
+    --dark: #1a1a2e;
+    --light: #f4f7f6;
+    --glass: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Support */
+body.dark-mode {
+    background-color: var(--dark);
+    color: white;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Main Container - Glassmorphism Effect */
+.container {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    color: var(--secondary);
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Inputs and Buttons */
+input, select {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #45b791;
+    transform: translateY(-2px);
+}
+
+/* Exam Area Styling */
+#exam-area {
+    margin-top: 20px;
+    padding: 20px;
+    border-top: 2px solid var(--primary);
+}
+
+.q-text {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .container { padding: 20px; }
+    h1 { font-size: 22px; }
+}
