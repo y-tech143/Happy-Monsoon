@@ -209,3 +209,267 @@ function closeForecastPopup() {
         mainTrack.volume = 1.0; 
     }
 }
+
+// ==========================================
+// SECTION 5: STEAMY WINDOW - STRICT 15s TIMER ENGINE
+// ==========================================
+window.addEventListener('DOMContentLoaded', () => {
+    const steamCanvas = document.getElementById('steamyCanvas');
+    const wrapper = document.getElementById('canvasWrapper');
+    if (!steamCanvas || !wrapper) return;
+
+    const ctx = steamCanvas.getContext('2d');
+    let isDrawing = false;
+    
+    // Timer Tracking Variables
+    let rubTimeActive = 0; // Tracks actual rubbing milliseconds
+    let lastTimestamp = 0;
+    let autoCleared = false;
+
+    // Set real resolution parameters
+    function initSteamLayer() {
+        steamCanvas.width = wrapper.clientWidth;
+        steamCanvas.height = wrapper.clientHeight;
+
+        // 100% Solid mist blue to completely block everything underneath
+        ctx.fillStyle = 'rgba(165, 195, 215, 1)'; 
+        ctx.fillRect(0, 0, steamCanvas.width, steamCanvas.height);
+
+        // Heavy drop and condensation textures
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+        for (let i = 0; i < 650; i++) {
+            ctx.beginPath();
+            ctx.arc(Math.random() * steamCanvas.width, Math.random() * steamCanvas.height, Math.random() * 3.8, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        // Reset state variables
+        rubTimeActive = 0;
+        autoCleared = false;
+        steamCanvas.style.transition = 'none';
+        steamCanvas.style.opacity = '1';
+    }
+    
+    initSteamLayer();
+    window.addEventListener('resize', initSteamLayer);
+
+    // Track real time elapsed during mouse/touch movement
+    function updateRubTimer() {
+        if (autoCleared) return;
+
+        const now = performance.now();
+        if (lastTimestamp > 0) {
+            const delta = now - lastTimestamp;
+            // Add only active moving milliseconds to total tracker
+            rubTimeActive += delta;
+        }
+        lastTimestamp = now;
+
+        // FIXED: 15,000 milliseconds = Strictly 15 Seconds of active rubbing
+        if (rubTimeActive >= 15000) {
+            autoCleared = true;
+            isDrawing = false;
+            
+            // Ultra elegant slow fade out sequence
+            steamCanvas.style.transition = 'opacity 1.5s ease-in-out';
+            steamCanvas.style.opacity = '0';
+            
+            setTimeout(() => {
+                ctx.clearRect(0, 0, steamCanvas.width, steamCanvas.height);
+            }, 1500);
+        }
+    }
+
+    // Scratch Action Driver
+    function scratch(clientX, clientY) {
+        if (autoCleared) return;
+        
+        const rect = steamCanvas.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        // Wipe effect
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 22, 0, Math.PI * 2); 
+        ctx.fill();
+
+        // Run timer ticks smoothly on every stroke update
+        updateRubTimer();
+    }
+
+    // Desktop Mouse Controls
+    steamCanvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        lastTimestamp = performance.now(); // Reset delta origin point
+        scratch(e.clientX, e.clientY);
+    });
+
+    steamCanvas.addEventListener('mousemove', (e) => {
+        if (isDrawing) scratch(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDrawing = false;
+        lastTimestamp = 0; // Halts the timer calculation when mouse is released
+    });
+
+    // Mobile Touch Controls
+    steamCanvas.addEventListener('touchstart', (e) => {
+        isDrawing = true;
+        lastTimestamp = performance.now();
+        if(e.touches.length > 0) scratch(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
+
+    steamCanvas.addEventListener('touchmove', (e) => {
+        if (isDrawing && e.touches.length > 0) {
+            scratch(e.touches[0].clientX, e.touches[0].clientY);
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+        isDrawing = false;
+        lastTimestamp = 0; // Halts the timer calculation when touch ends
+    });
+});
+
+
+
+// ==========================================
+// SECTION 5: VINTAGE WAX SEAL COUNTER LOGIC
+// ==========================================
+window.addEventListener('DOMContentLoaded', () => {
+    const waxSeal = document.getElementById('waxSeal');
+    const envelopeWrapper = document.getElementById('envelopeWrapper');
+    const sealInstruction = document.getElementById('sealInstruction');
+    
+    let tapCount = 0;
+    let sequenceActive = true;
+
+    if (!waxSeal || !envelopeWrapper) return;
+
+    waxSeal.addEventListener('click', () => {
+        if (!sequenceActive) return;
+
+        tapCount++;
+
+        // Trigger micro-shake feedback animation on every single tap
+        waxSeal.classList.remove('crack-shake');
+        void waxSeal.offsetWidth; // Trigger DOM reflow to repeat css animations safely
+        waxSeal.classList.add('crack-shake');
+
+        // Dynamic Text Prompt Updates based on tap level
+        if (tapCount === 1) {
+            sealInstruction.innerText = "The wax is cracking... Tap again! ⚡";
+        } else if (tapCount === 2) {
+            sealInstruction.innerText = "Almost open! One final tap... 🔥";
+        } else if (tapCount >= 3) {
+            // Trigger Final Grand Opening Sequence
+            sequenceActive = false;
+            waxSeal.classList.add('broken');
+            sealInstruction.style.opacity = '0';
+
+            // Wait for wax fade, then open envelope top flap
+            setTimeout(() => {
+                envelopeWrapper.classList.add('open');
+                
+                // Final text resolution switch once letter rises completely
+                setTimeout(() => {
+                    sealInstruction.innerText = "A special letter just for you... 🤍";
+                    sealInstruction.style.opacity = '1';
+                }, 1000);
+
+            }, 400);
+        }
+    });
+});
+
+
+// ========================================================
+// SECTION 6: LUXURY SCRATCH CARD + AUDIO TIMELINE SEEK
+// ========================================================
+window.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('scratchCanvas');
+    const wrapper = canvas ? canvas.parentElement : null;
+    const song = document.getElementById('monsoonSong');
+    if (!canvas || !wrapper || !song) return;
+
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let audioPlayed = false;
+
+    function initScratchLayer() {
+        canvas.width = wrapper.clientWidth;
+        canvas.height = wrapper.clientHeight;
+
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#bdc3c7');   
+        gradient.addColorStop(0.3, '#eaeded'); 
+        gradient.addColorStop(0.7, '#95a5a6'); 
+        gradient.addColorStop(1, '#7f8c8d');   
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Gold dust effect overlay
+        ctx.fillStyle = 'rgba(212, 175, 55, 0.2)'; 
+        for (let i = 0; i < 300; i++) {
+            ctx.beginPath();
+            ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    initScratchLayer();
+    window.addEventListener('resize', initScratchLayer);
+
+    function checkScratchPercentage() {
+        if (audioPlayed) return;
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixels = imageData.data;
+        let clearedPixels = 0;
+
+        for (let i = 3; i < pixels.length; i += 4) {
+            if (pixels[i] === 0) clearedPixels++;
+        }
+
+        const percentage = (clearedPixels / (canvas.width * canvas.height)) * 100;
+
+        if (percentage > 35 && !audioPlayed) {
+            audioPlayed = true;
+            
+            // Sync current song layout timeline to 48s exactly
+            song.currentTime = 48; 
+            song.volume = 0.8;
+            song.play().catch(err => console.log("User action pending for audio: ", err));
+
+            // Dissolve the remaining mask smoothly
+            canvas.style.transition = 'opacity 1s ease-out';
+            canvas.style.opacity = '0';
+            setTimeout(() => { canvas.style.display = 'none'; }, 1000);
+        }
+    }
+
+    function scratch(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 28, 0, Math.PI * 2); 
+        ctx.fill();
+
+        checkScratchPercentage();
+    }
+
+    canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e.clientX, e.clientY); });
+    canvas.addEventListener('mousemove', (e) => { if (isDrawing) scratch(e.clientX, e.clientY); });
+    window.addEventListener('mouseup', () => isDrawing = false);
+
+    canvas.addEventListener('touchstart', (e) => { isDrawing = true; if (e.touches.length > 0) scratch(e.touches[0].clientX, e.touches[0].clientY); });
+    canvas.addEventListener('touchmove', (e) => { if (isDrawing && e.touches.length > 0) scratch(e.touches[0].clientX, e.touches[0].clientY); });
+    window.addEventListener('touchend', () => isDrawing = false);
+});
+
