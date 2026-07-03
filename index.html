@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="breaking-news-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+        <span class="marquee-text">• MONSOON VIBES 2026 • Refreshing content, aesthetic frames, and a sprinkle of magic. ✨ | Scroll down to explore the journey. 🌧️</span>
+    </marquee>
+</div>
     <!-- Ultra-Realistic Physics Canvas Rain -->
     <canvas id="rainCanvas"></canvas>
 
@@ -99,6 +103,86 @@
                 <button class="forecast-trigger-btn" onclick="openForecastPopup()">Check Future Forecast 🔮</button>
             </div>
         </section>
+
+        <!-- GAME WINNER REWARD POPUP -->
+    <div class="popup-overlay" id="gameRewardPopup">
+        <div class="popup-content-box reward-box">
+            <div class="close-corner" onclick="closeRewardPopup()">✕</div>
+            <div class="popup-inner">
+                <div class="heart-pulse-icon">💖</div>
+                <h3 class="reward-heading">CHALLENGE COMPLETED</h3>
+                <div class="divider-line"></div>
+                <p class="reward-main-message">
+                    "You successfully saved us from the storm! ☔ Reward: A permanent spot in my heart."
+                </p>
+                <div class="divider-line"></div>
+                <button class="dismiss-widget-btn" onclick="closeRewardPopup()">Keep Smiling ✨</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SECTION 5: THE STEAMY WINDOW TEXT REVEAL -->
+        <section id="steamy-section" class="steamy-window-section">
+            <div class="steamy-container">
+                <div class="window-badge"></div>
+                <h2 class="window-instruction">Screen thodi foggy ho gyi hai Isko saaf karo.</h2>
+                
+                <!-- The Canvas Box where magic happens -->
+                <div class="canvas-wrapper" id="canvasWrapper">
+                    <!-- Underneath Hidden Message Card -->
+                    <div class="hidden-message-card">
+                        <div class="heart-glow">💖</div>
+                        <p class="final-romantic-text">
+                           Foggy window toh saaf ho gayi... par is dil par jo tumhaari yaadon ka mausam chhaya hai, use kaise saaf karoon? Stay with me forever
+                        </p>
+                    </div>
+                    
+                    <!-- The Interactive Fog Layer Canvas -->
+                    <canvas id="steamyCanvas"></canvas>
+                </div>
+            </div>
+        </section>
+        <!-- SECTION 5: THE ROYAL MONSOON WAX SEAL ENVELOPE -->
+        <section id="envelope-section" class="royal-envelope-section">
+            <div class="envelope-container">
+                <div class="royal-badge">Vintage Experience ✉️</div>
+                <h2 class="seal-instruction" id="sealInstruction">Break the seal to open the letter...</h2>
+                
+                <!-- The Interactive Envelope Window -->
+                <div class="envelope-wrapper" id="envelopeWrapper">
+                    
+                    <!-- 1. The Back/Main Pocket of Envelope -->
+                    <div class="envelope-back"></div>
+                    
+                    <!-- 2. The Romantic Letter Paper Inside (Hidden Initially) -->
+                    <div class="letter-paper" id="romanticLetter">
+                        <div class="letter-content">
+                            <div class="letter-heart">🤍</div>
+                            <p class="letter-text">
+                                 Weather report keh rahi hai ki baahar thunderstorms hain... par unhe kya pata, asli bijli toh tumhari in aankhon ne mere dil par girayi hai. Happy Monsoon, gorgeous! ⚡🤍
+                            </p>
+                            <div class="letter-footer">- </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3. The Top Flap of Envelope -->
+                    <div class="envelope-flap" id="envelopeFlap"></div>
+                    
+                    <!-- 4. The Front Pockets/Sides -->
+                    <div class="envelope-front"></div>
+                    
+                    <!-- 5. The Royal Digital Wax Seal (Sits on top) -->
+                    <div class="wax-seal" id="waxSeal">
+                        <div class="wax-inner">❤</div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+
+        
     </main>
 
     <!-- CHAI POPUP LAYER SYSTEM -->
@@ -158,4 +242,22 @@
 
     <script src="index.js"></script>
 </body>
+<div class="breaking-news-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+        <span class="marquee-text"> Thank You ✨ Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨
+    </marquee>
+</div>
+<div class="breaking-news-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+        <span class="marquee-text"> Made with love & a little bit of rain. 🌧️🤍Made with love & a little bit of rain. 🌧️🤍  Made with love & a little bit of rain. 🌧️🤍Made with love & a little bit of rain. 🌧️🤍
+    </marquee>
+</div>
+<footer class="footer-section">
+    <div class="footer-content">
+        <p class="footer-tagline">Made with love & a little bit of rain. 🌧️🤍</p>
+       
+           
+    
+    </div>
+</footer>
 </html>
