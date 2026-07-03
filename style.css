@@ -675,3 +675,431 @@ body {
     0% { transform: translateY(0); }
     100% { transform: translateY(-5px); }
 }
+
+/* --- SECTION 5: STEAMY WINDOW REVEAL STYLES --- */
+.steamy-window-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.steamy-container {
+    background: var(--card-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--card-border);
+    border-radius: 36px;
+    padding: 35px 20px;
+    max-width: 460px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(3, 105, 161, 0.12);
+}
+
+.window-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    background: rgba(3, 105, 161, 0.08);
+    color: #0369a1;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.window-instruction {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+/* Canvas Wrapper Box */
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Hidden Message Card Layout (Behind the canvas) */
+.hidden-message-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); /* Elegant soft romantic gradient */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 24px;
+    z-index: 1;
+}
+
+.heart-glow {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: simplePulse 2s infinite alternate;
+}
+
+.final-romantic-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-style: italic;
+    color: #0f172a;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+/* The Fog Layer Overlay Canvas */
+#steamyCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    cursor: pointer;
+    touch-action: none; /* Mobile screen scroll blocks for scratch control */
+    border-radius: 24px;
+}
+
+@keyframes simplePulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+@media (min-width: 768px) {
+    .window-instruction { font-size: 1.2rem; }
+    .final-romantic-text { font-size: 1.6rem; }
+}
+
+
+/* --- SECTION 5: ROYAL WAX SEAL ENVELOPE STYLES --- */
+.royal-envelope-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.envelope-container {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+}
+
+.royal-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(15, 23, 42, 0.05);
+    color: #475569;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.seal-instruction {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.1rem;
+    color: #334155;
+    margin-bottom: 40px;
+    font-weight: 600;
+    transition: opacity 0.5s ease;
+}
+
+/* Base Envelope Arena Object */
+.envelope-wrapper {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    background: #e2e8f0; /* Soft backing drop shadow layer */
+    border-radius: 12px;
+    box-shadow: 0 30px 70px rgba(15, 23, 42, 0.15);
+}
+
+/* 1. Envelope Back Pocket */
+.envelope-back {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #f1f5f9; /* Rich ivory paper theme */
+    border-radius: 12px;
+    z-index: 1;
+}
+
+/* 2. Front Fold Overlap Shading */
+.envelope-front {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(30deg, #e2e8f0 48%, rgba(0,0,0,0.03) 50%, #f1f5f9 52%);
+    clip-path: polygon(0 100%, 50% 55%, 100% 100%);
+    border-radius: 0 0 12px 12px;
+    z-index: 4;
+}
+
+/* 3. Envelope Top Triangular Flap */
+.envelope-flap {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #e2e8f0;
+    clip-path: polygon(0 0, 50% 56%, 100% 0);
+    transform-origin: top;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px 12px 0 0;
+    z-index: 5; /* Initially sits above everything */
+}
+
+/* Open Animation state for Flap */
+.envelope-wrapper.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 2; /* Sinks behind letter once opened */
+    background: #cbd5e1;
+}
+
+/* 4. The Hidden Confession Letter Card */
+.letter-paper {
+    position: absolute;
+    top: 5px;
+    left: 4%;
+    width: 92%;
+    height: 94%;
+    background: #fffdf9; /* Classic vintage parchment yellow-white tint */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    padding: 25px 20px;
+    z-index: 3; /* Sits below flap initially */
+    transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bounce slide layout */
+    transform: translateY(0);
+}
+
+/* Trigger Slide Out Upwards Action */
+.envelope-wrapper.open .letter-paper {
+    transform: translateY(-160px); /* Pushes the letter up into view completely */
+    height: auto;
+    box-shadow: 0 -20px 50px rgba(15, 23, 42, 0.12);
+    z-index: 6; /* Pops ahead of everything */
+}
+
+/* Content inside the letter */
+.letter-content {
+    text-align: center;
+}
+
+.letter-heart {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    animation: floatingHeart 2s infinite ease-in-out;
+}
+
+.letter-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #0f172a;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+.letter-footer {
+    margin-top: 15px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* 5. Pure Crimson Wax Seal Component */
+.wax-seal {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 64px;
+    height: 64px;
+    background: radial-gradient(circle, #dc2626 40%, #b91c1c 90%); /* Realistic red wax tone */
+    border-radius: 50%;
+    box-shadow: 0 6px 15px rgba(185, 28, 28, 0.4), inset 0 2px 4px rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 6;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+}
+
+.wax-seal:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.wax-inner {
+    width: 46px;
+    height: 46px;
+    border: 2px dashed rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.3rem;
+    font-weight: bold;
+    user-select: none;
+}
+
+/* Breaking/Cracking Wax Effect */
+.wax-seal.crack-shake {
+    animation: sealShake 0.15s 3;
+}
+
+.wax-seal.broken {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Micro Animations Layout */
+@keyframes sealShake {
+    0% { transform: translate(-52%, -50%) rotate(-3deg); }
+    50% { transform: translate(-48%, -50%) rotate(3deg); }
+    100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes floatingHeart {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+@media (min-width: 768px) {
+    .letter-text { font-size: 1.4rem; }
+    .envelope-wrapper { height: 300px; }
+    .envelope-wrapper.open .letter-paper { transform: translateY(-180px); }
+}
+
+/* --- FIXED LETTER PAPER LAYER (HIDDEN INITIALLY) --- */
+.letter-paper {
+    position: absolute;
+    top: 5px;
+    left: 4%;
+    width: 92%;
+    height: 90%;
+    background: #fffdf9; /* Vintage Parchment Look */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    padding: 25px 20px;
+    z-index: 2; /* Sits completely behind the envelope front pockets */
+    opacity: 0; /* Purely invisible before cracking the seal */
+    transform: translateY(10px) scale(0.95); /* Hidden inside slightly lower */
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease-in-out;
+    pointer-events: none; /* Disables interaction until fully opened */
+}
+
+/* --- TRIGGER SLIDE OUT UPWARDS ACTION (ON OPEN) --- */
+.envelope-wrapper.open .letter-paper {
+    opacity: 1; /* Instantly comes alive */
+    transform: translateY(-170px) scale(1); /* Smoothly pops out on top */
+    height: auto;
+    box-shadow: 0 -20px 50px rgba(15, 23, 42, 0.15);
+    z-index: 7; /* Stands way ahead of everything else */
+    pointer-events: auto; /* Activates clicks/touch once popped up */
+}
+
+/* --- GLOBAL THEME ADJUSTMENTS --- */
+body {
+    background: #e0f2fe; /* Theme ka light blue base */
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* --- SECTION 5: VINTAGE ENVELOPE (MATCHED TO IMAGE) --- */
+.royal-envelope-section {
+    padding: 60px 20px;
+}
+
+.envelope-wrapper {
+    background: #ffffff; /* White clean envelope */
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(14, 165, 233, 0.1);
+}
+
+.envelope-flap {
+    background: #f1f5f9; /* Soft grey flap */
+}
+
+.wax-seal {
+    background: radial-gradient(circle, #f87171 0%, #ef4444 100%);
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+}
+
+.letter-text {
+    color: #1e293b; /* Deep slate for readability */
+    font-size: 1.1rem;
+}
+
+/* --- FOOTER: MINIMALIST SIGNATURE (MATCHED TO IMAGE) --- */
+.footer-section {
+    background: transparent; /* Light blue blend */
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.footer-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #334155;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.footer-signature {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+}
+
+.footer-social a {
+    color: #475569;
+    font-size: 0.75rem;
+    margin: 0 10px;
+    text-transform: uppercase;
+}
+
+.breaking-news-bar {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent white to match rainy look */
+    backdrop-filter: blur(8px);
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    position: relative;
+    z-index: 10;
+}
+
+.marquee-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e293b; /* Deep slate, fits perfectly with light blue background */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
