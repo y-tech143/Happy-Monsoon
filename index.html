@@ -3,261 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monsoon Musings 🌧️</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #fff;
+            color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 15px;
+        }
+        p {
+            font-size: 14px;
+            color: #555;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
-<div class="breaking-news-bar">
-    <marquee behavior="scroll" direction="left" scrollamount="5">
-        <span class="marquee-text">• MONSOON VIBES 2026 • Refreshing content, aesthetic frames, and a sprinkle of magic. ✨ | Scroll down to explore the journey. 🌧️</span>
-    </marquee>
-</div>
-    <!-- Ultra-Realistic Physics Canvas Rain -->
-    <canvas id="rainCanvas"></canvas>
 
-    <!-- MAIN BACKGROUND SCORE (Starts from 8s) -->
-    <audio id="mainGlobalMusic" loop preload="auto">
-        <source src="https://videotourl.com/audio/1783090977065-dde78fa6-975c-4775-ab5b-d26db22b3aa4.mp3" type="audio/mp3">
-    </audio>
-
-    <!-- MOBILE-FRIENDLY AUDIO UNLOCK OVERLAY -->
-    <div id="soundUnlockOverlay" onclick="unlockAudioPipeline()">
-        <div class="unlock-content">
-            <span class="unlock-emoji">🌧️</span>
-            <p class="unlock-text">Tap anywhere to enter the monsoon vibe...</p>
-        </div>
+    <div class="error-container">
+        <h1>404 Not Found</h1>
+        <p>The requested URL was not found on this server.</p>
     </div>
 
-    <!-- MAIN CONTAINER FOR CONTENT -->
-    <main class="scroller-container">
-
-        <!-- SECTION 1: HAPPY MONSOON LANDING CARD -->
-        <section id="welcome-section" class="hero-section">
-            <div class="hero-glass-card">
-                <div class="monsoon-badge">
-                    <span class="pulse-dot"></span> Monsoon Special
-                </div>
-                <h1 class="main-title">Happy Monsoon, <br>
-                    <span class="highlight-text">My Favorite Person</span> 🌧️</h1>
-                <p class="hero-desc">
-                    "Suno... Baarish ki boondein, thandi hawayein, aur yeh lofi track—yeh mausam bilkul tumhari tarah perfect hai."
-                </p>
-                <div class="hint-text">Scroll down for a surprise... ↓</div>
-            </div>
-        </section>
-
-        <!-- SECTION 2: THE MONSOON CHAI SECTION -->
-        <section id="chai-section" class="cozy-section">
-            <div class="chai-glass-card" onclick="openChaiPopup()">
-                <div class="steam-container">
-                    <span class="emoji-icon">☕</span>
-                </div>
-                <h2 class="section-title">Chai, Baarish Aur Tum...</h2>
-                <p class="section-desc">
-                    
-                </p>
-                <div class="tap-badge">Tap to feel the warmth ✨</div>
-            </div>
-        </section>
-<!-- SECTION 3: THE UMBRELLA MOOD MATCHER -->
-        <section id="mood-section" class="mood-matcher-section">
-            <div class="mood-glass-card">
-                <div class="mood-badge"></div>
-                
-                <h2 class="mood-title">How's the weather inside my heart? ☔</h2>
-                
-                <!-- Dynamic Emoji Display -->
-                <div class="mood-emoji-display" id="currentMoodEmoji">🌤️</div>
-                
-                <!-- Live Changing Status Text -->
-                <p class="mood-status-text" id="currentMoodText">Move the umbrella below to match your vibe...</p>
-                
-                <!-- Cozy Sub Message -->
-                <p class="mood-sub-message" id="currentMoodSub">"Har mausam mein dil bas tumhein hi yaad karta hai."</p>
-
-                <!-- Premium Custom Slider Container -->
-                <div class="slider-wrapper">
-                    <input type="range" min="1" max="3" value="1" class="umbrella-slider" id="moodSlider" oninput="updateMonsoonMood(this.value)">
-                    <div class="slider-labels">
-                        <span>Soft Drizzle 🌧️</span>
-                        <span>Heavy Pour ⛈️</span>
-                        <span>Stormy Vibe ⚡</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- SECTION 4: THE WEATHER FORECAST PREDICTOR -->
-        <section id="forecast-section" class="weather-section">
-            <div class="forecast-base-card">
-                <div class="widget-header">
-                    <span class="satellite-icon">📡</span> LIVE SATELLITE RADAR
-                </div>
-                <h2 class="forecast-title"> Cloud Analytics</h2>
-                <p class="forecast-desc">System has detected massive aesthetic romantic clouds over your coordinates.</p>
-                
-                <!-- Action Button to Trigger Magic -->
-                <button class="forecast-trigger-btn" onclick="openForecastPopup()">Check Future Forecast 🔮</button>
-            </div>
-        </section>
-
-        <!-- GAME WINNER REWARD POPUP -->
-    <div class="popup-overlay" id="gameRewardPopup">
-        <div class="popup-content-box reward-box">
-            <div class="close-corner" onclick="closeRewardPopup()">✕</div>
-            <div class="popup-inner">
-                <div class="heart-pulse-icon">💖</div>
-                <h3 class="reward-heading">CHALLENGE COMPLETED</h3>
-                <div class="divider-line"></div>
-                <p class="reward-main-message">
-                    "You successfully saved us from the storm! ☔ Reward: A permanent spot in my heart."
-                </p>
-                <div class="divider-line"></div>
-                <button class="dismiss-widget-btn" onclick="closeRewardPopup()">Keep Smiling ✨</button>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- SECTION 5: THE STEAMY WINDOW TEXT REVEAL -->
-        <section id="steamy-section" class="steamy-window-section">
-            <div class="steamy-container">
-                <div class="window-badge"></div>
-                <h2 class="window-instruction">Screen thodi foggy ho gyi hai Isko saaf karo.</h2>
-                
-                <!-- The Canvas Box where magic happens -->
-                <div class="canvas-wrapper" id="canvasWrapper">
-                    <!-- Underneath Hidden Message Card -->
-                    <div class="hidden-message-card">
-                        <div class="heart-glow">💖</div>
-                        <p class="final-romantic-text">
-                           Foggy window toh saaf ho gayi... par is dil par jo tumhaari yaadon ka mausam chhaya hai, use kaise saaf karoon? Stay with me forever
-                        </p>
-                    </div>
-                    
-                    <!-- The Interactive Fog Layer Canvas -->
-                    <canvas id="steamyCanvas"></canvas>
-                </div>
-            </div>
-        </section>
-        <!-- SECTION 5: THE ROYAL MONSOON WAX SEAL ENVELOPE -->
-        <section id="envelope-section" class="royal-envelope-section">
-            <div class="envelope-container">
-                <div class="royal-badge">Vintage Experience ✉️</div>
-                <h2 class="seal-instruction" id="sealInstruction">Break the seal to open the letter...</h2>
-                
-                <!-- The Interactive Envelope Window -->
-                <div class="envelope-wrapper" id="envelopeWrapper">
-                    
-                    <!-- 1. The Back/Main Pocket of Envelope -->
-                    <div class="envelope-back"></div>
-                    
-                    <!-- 2. The Romantic Letter Paper Inside (Hidden Initially) -->
-                    <div class="letter-paper" id="romanticLetter">
-                        <div class="letter-content">
-                            <div class="letter-heart">🤍</div>
-                            <p class="letter-text">
-                                 Weather report keh rahi hai ki baahar thunderstorms hain... par unhe kya pata, asli bijli toh tumhari in aankhon ne mere dil par girayi hai. Happy Monsoon, gorgeous! ⚡🤍
-                            </p>
-                            <div class="letter-footer">- </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 3. The Top Flap of Envelope -->
-                    <div class="envelope-flap" id="envelopeFlap"></div>
-                    
-                    <!-- 4. The Front Pockets/Sides -->
-                    <div class="envelope-front"></div>
-                    
-                    <!-- 5. The Royal Digital Wax Seal (Sits on top) -->
-                    <div class="wax-seal" id="waxSeal">
-                        <div class="wax-inner">❤</div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        
-
-        
-    </main>
-
-    <!-- CHAI POPUP LAYER SYSTEM -->
-    <div class="popup-overlay" id="chaiPopup">
-        <div class="popup-content-box">
-            <button class="back-btn" onclick="closeChaiPopup()">← Back (Main Song On)</button>
-            <div class="popup-inner">
-                <span class="large-emoji">🌧️☕</span>
-                <h3 class="popup-heading">Special Cozy Track Just For You</h3>
-                <p class="handwritten-message">
-                    "Suno, jab bhi baarish hoti hai na, dil bas yahi kehta hai ki kaash hum dono ek hi umbrella ke niche hote aur haath mein garam chai hoti...
-                </p>
-                
-                <!-- Popup Audio Element -->
-                <audio id="popupChaiMusic" preload="auto">
-                    <source src="https://videotourl.com/audio/1783092582641-a095dc6c-9971-4ade-b393-8dd8a2971996.mp3" type="audio/mp3">
-                </audio>
-            </div>
-        </div>
-    </div>
-
-    <!-- REALISTIC FORECAST POPUP LAYER -->
-    <div class="popup-overlay" id="forecastPopup">
-        <div class="popup-content-box forecast-box">
-            <!-- Modern Corner Close Action -->
-            <div class="close-corner" onclick="closeForecastPopup()">✕</div>
-            
-            <div class="popup-inner">
-                <!-- Glowing Radar Animation Structure -->
-                <div class="radar-container">
-                    <div class="radar-pulse"></div>
-                    <div class="radar-pulse delay-1"></div>
-                    <div class="radar-pulse delay-2"></div>
-                    <div class="radar-center">⛈️</div>
-                </div>
-
-                <div class="live-tag"><span class="live-dot"></span> LIVE EMERGENCY ALERT</div>
-                <h3 class="alert-heading">METEOROLOGICAL REPORT</h3>
-                
-                <div class="divider-line"></div>
-                
-                <p class="forecast-main-alert">
-                    "Forecast Alert: 100% chance of heavy raining, and a 99.9% chance that someone is missing you crazy right now! Bring an umbrella."
-                </p>
-                
-                <div class="divider-line"></div>
-
-                <!-- Bottom Clean Premium Action Button -->
-                <button class="dismiss-widget-btn" onclick="closeForecastPopup()">Acknowledge & Close Radar</button>
-                
-                <audio id="popupForecastMusic" preload="auto">
-                    <source src="https://videotourl.com/audio/1783094863781-1506af57-6cf0-4ae6-a039-e61a4f49f3f9.mp3" type="audio/mp3">
-                </audio>
-            </div>
-        </div>
-    </div>
-
-    <script src="index.js"></script>
 </body>
-<div class="breaking-news-bar">
-    <marquee behavior="scroll" direction="left" scrollamount="5">
-        <span class="marquee-text"> Thank You ✨ Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨Thank You ✨
-    </marquee>
-</div>
-<div class="breaking-news-bar">
-    <marquee behavior="scroll" direction="left" scrollamount="5">
-        <span class="marquee-text"> Made with love & a little bit of rain. 🌧️🤍Made with love & a little bit of rain. 🌧️🤍  Made with love & a little bit of rain. 🌧️🤍Made with love & a little bit of rain. 🌧️🤍
-    </marquee>
-</div>
-<footer class="footer-section">
-    <div class="footer-content">
-        <p class="footer-tagline">Made with love & a little bit of rain. 🌧️🤍</p>
-       
-           
-    
-    </div>
-</footer>
 </html>
